@@ -1,0 +1,73 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="isDisplayAddForm ? addNote() : editNote()"
+  class="wrapper border p-3 mt-3"
+>
+  <h3 class="text-center">{{ isDisplayAddForm ? "Add Note" : "Edit Note" }}</h3>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      type="text"
+      [ngClass]="{
+        'is-invalid':
+          Helper.title.errors && (Helper.title.touched || isFormSubmitted)
+      }"
+      class="form-control"
+      formControlName="title"
+      id="title"
+      placeholder="Title"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="Helper.title.errors && (isFormSubmitted || Helper.title.touched)"
+    >
+      title is required
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="desc" class="form-label">Description</label>
+    <textarea
+      [ngClass]="{
+        'is-invalid':
+          Helper.description.errors &&
+          (Helper.description.touched || isFormSubmitted)
+      }"
+      class="form-control"
+      id="desc"
+      formControlName="description"
+      rows="3"
+    ></textarea>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        Helper.description.errors &&
+        (isFormSubmitted || Helper.description.touched)
+      "
+    >
+      description is required
+    </div>
+  </div>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      type="button"
+      class="btn col-4 btn-light"
+      (click)="cancelProcessFunc()"
+    >
+      Cancel
+    </button>
+    <button
+      *ngIf="isDisplayAddForm"
+      type="submit"
+      class="btn col-4 btn-success ml-3"
+    >
+      Add
+    </button>
+    <button
+      *ngIf="!isDisplayAddForm"
+      type="submit"
+      class="btn col-4 btn-success ml-3"
+    >
+      Save
+    </button>
+  </div>
+</form>

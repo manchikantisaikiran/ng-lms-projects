@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <div class="income">
+    <h2>INCOME</h2>
+    <div class="fields-container income-container">
+      <div (click)="editForm(obj.id)" *ngFor="let obj of incomeArray" id="{{ obj.id }}">
+        <h5>{{ obj.description }}</h5>
+        <span class="income-way">{{ obj.amount }}</span>
+        <div (click)="deleteField(obj.id, 'income')" class="close"></div>
+      </div>
+    </div>
+  </div>
+  <div class="expenses">
+    <h2>EXPENSES</h2>
+    <div class="fields-container expenses-container">
+      <div (click)="editForm(obj.id)" *ngFor="let obj of expenseArray" id="{{ obj.id }}">
+        <h5>{{ obj.description }}</h5>
+        <span class="expense-way">{{ obj.amount }}</span>
+        <div (click)="deleteField(obj.id, 'expense')" class="close"></div>
+      </div>
+    </div>
+  </div>
+</div>

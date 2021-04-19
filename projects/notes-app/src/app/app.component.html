@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="container-sm">
+  <!-- *ngIf="!displayAddForm && !displayEditForm" -->
+  <!-- (showAddForm)="showAddForm($event)" -->
+  <!-- (showEditForm)="showEditForm($event)" -->
+  <app-notes-list
+    *ngIf="!displayForm"
+    (showForm)="showForm($event)"
+  ></app-notes-list>
+  <app-form [isDisplayAddForm]="isDisplayAddForm" *ngIf="displayForm" (cancelProcess)="canelProcess($event)"></app-form>
+  <!-- <app-add-new-note *ngIf="displayAddForm" (cancelAddingNote)="showAddForm($event)"></app-add-new-note> -->
+  <!-- <app-edit-note *ngIf="displayEditForm" (cancelEditingNote)="showEditForm($event)"></app-edit-note> -->
+</div>

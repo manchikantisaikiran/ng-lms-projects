@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <form>
+    <input type="text" [formControl]="amount" name="amount" placeholder="Amount" id="amount" />
+    <input type="text" [formControl]="desc" placeholder="Description" name="desc" id="desc" />
+    <button (click)="addHandler($event)">Add</button>
+  </form>
+  <app-display-budget [updatedSpends]="updatedSpends" [spendsChanged]="spendsChanged" (budgetChanged)="budgetChangedFromDisplay()" ></app-display-budget>
+  <!-- (acknowledge)="acknowledged()" -->
+</div>

@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <span [style.color]="budget >= 0 ? 'green' : 'red'">{{ budget }}</span>
+  <!-- (budgetChanged)="budgetChanged($event)" -->
+</div>
+<main>
+  <app-provide-budget
+    [updatedSpends]="spend"
+    (budgetChanged)="budgetChanged($event)"
+  ></app-provide-budget>
+</main>

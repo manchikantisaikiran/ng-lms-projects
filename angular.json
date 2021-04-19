@@ -3,5 +3,238 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "budget-calculator": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/budget-calculator",
+      "sourceRoot": "projects/budget-calculator/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/budget-calculator",
+            "index": "projects/budget-calculator/src/index.html",
+            "main": "projects/budget-calculator/src/main.ts",
+            "polyfills": "projects/budget-calculator/src/polyfills.ts",
+            "tsConfig": "projects/budget-calculator/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/budget-calculator/src/favicon.ico",
+              "projects/budget-calculator/src/assets"
+            ],
+            "styles": [
+              "projects/budget-calculator/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/budget-calculator/src/environments/environment.ts",
+                  "with": "projects/budget-calculator/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "budget-calculator:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "budget-calculator:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "budget-calculator:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/budget-calculator/src/test.ts",
+            "polyfills": "projects/budget-calculator/src/polyfills.ts",
+            "tsConfig": "projects/budget-calculator/tsconfig.spec.json",
+            "karmaConfig": "projects/budget-calculator/karma.conf.js",
+            "assets": [
+              "projects/budget-calculator/src/favicon.ico",
+              "projects/budget-calculator/src/assets"
+            ],
+            "styles": [
+              "projects/budget-calculator/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/budget-calculator/tsconfig.app.json",
+              "projects/budget-calculator/tsconfig.spec.json",
+              "projects/budget-calculator/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/budget-calculator/e2e/protractor.conf.js",
+            "devServerTarget": "budget-calculator:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "budget-calculator:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "notes-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/notes-app",
+      "sourceRoot": "projects/notes-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/notes-app",
+            "index": "projects/notes-app/src/index.html",
+            "main": "projects/notes-app/src/main.ts",
+            "polyfills": "projects/notes-app/src/polyfills.ts",
+            "tsConfig": "projects/notes-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/notes-app/src/favicon.ico",
+              "projects/notes-app/src/assets"
+            ],
+            "styles": [
+              "projects/notes-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/notes-app/src/environments/environment.ts",
+                  "with": "projects/notes-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "notes-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "notes-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "notes-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/notes-app/src/test.ts",
+            "polyfills": "projects/notes-app/src/polyfills.ts",
+            "tsConfig": "projects/notes-app/tsconfig.spec.json",
+            "karmaConfig": "projects/notes-app/karma.conf.js",
+            "assets": [
+              "projects/notes-app/src/favicon.ico",
+              "projects/notes-app/src/assets"
+            ],
+            "styles": [
+              "projects/notes-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/notes-app/tsconfig.app.json",
+              "projects/notes-app/tsconfig.spec.json",
+              "projects/notes-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/notes-app/e2e/protractor.conf.js",
+            "devServerTarget": "notes-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "notes-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "notes-app"
 }

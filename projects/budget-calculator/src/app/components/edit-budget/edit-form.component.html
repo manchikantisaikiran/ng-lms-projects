@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <div class="container" (click)="blur()"></div>
+  <div class="edit">
+    <h1>EDIT</h1>
+    <input type="text" name="amount" placeholder="Amount" [formControl]="amount">
+    <input type="text" name="description" placeholder="description" [formControl]="desc">
+    <button (click)="onSave()" >Save</button>
+  </div>
+</div>

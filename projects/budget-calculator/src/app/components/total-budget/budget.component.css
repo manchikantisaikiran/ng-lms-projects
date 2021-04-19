@@ -1,0 +1,14 @@
+main{
+    width: 50%;
+    margin: auto;
+}
+
+.wrapper{
+    height: 200px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 45px;
+    color: #fff;
+    background-color: #222;
+}
