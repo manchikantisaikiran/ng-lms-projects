@@ -1,0 +1,46 @@
+.app-wrapper{
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+    /* background-color: #e1e2ed; */
+    background-image: url('https://picsum.photos/seed/picsum/1200/625');
+    /* background-image: url('https://images.unsplash.com/photo-1616709620730-0058222c8389?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixlib=rb-1.2.1&q=80&w=1920'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}   
+
+.top-section{
+    /* background-color: aquamarine; */
+    text-align: center;
+    padding: 100px 0;
+}
+
+.top-section h1{
+    font-size: 120px;
+    font-weight: bold;
+    color: #f5f5f5;
+    text-shadow: 0 1px 7px rgba(0,0,0,0.12);
+}
+
+.top-section h2{
+    font-size: 28px;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.content-section{
+    /* background-color: cadetblue; */
+    flex-grow: 1;
+}
+
+.bottom-section{
+    /* background-color: coral; */
+}
+
+.bottom-section app-tabs{
+    display: flex;
+    /* margin: auto; */
+    justify-content: center;
+}

@@ -234,7 +234,123 @@
           }
         }
       }
+    },
+    "personal-dashboard": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/personal-dashboard",
+      "sourceRoot": "projects/personal-dashboard/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/personal-dashboard",
+            "index": "projects/personal-dashboard/src/index.html",
+            "main": "projects/personal-dashboard/src/main.ts",
+            "polyfills": "projects/personal-dashboard/src/polyfills.ts",
+            "tsConfig": "projects/personal-dashboard/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/personal-dashboard/src/favicon.ico",
+              "projects/personal-dashboard/src/assets"
+            ],
+            "styles": [
+              "projects/personal-dashboard/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/personal-dashboard/src/environments/environment.ts",
+                  "with": "projects/personal-dashboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "personal-dashboard:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "personal-dashboard:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "personal-dashboard:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/personal-dashboard/src/test.ts",
+            "polyfills": "projects/personal-dashboard/src/polyfills.ts",
+            "tsConfig": "projects/personal-dashboard/tsconfig.spec.json",
+            "karmaConfig": "projects/personal-dashboard/karma.conf.js",
+            "assets": [
+              "projects/personal-dashboard/src/favicon.ico",
+              "projects/personal-dashboard/src/assets"
+            ],
+            "styles": [
+              "projects/personal-dashboard/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/personal-dashboard/tsconfig.app.json",
+              "projects/personal-dashboard/tsconfig.spec.json",
+              "projects/personal-dashboard/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/personal-dashboard/e2e/protractor.conf.js",
+            "devServerTarget": "personal-dashboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "personal-dashboard:serve:production"
+            }
+          }
+        }
+      }
     }
   },
-  "defaultProject": "notes-app"
+  "defaultProject": "personal-dashboard"
 }
