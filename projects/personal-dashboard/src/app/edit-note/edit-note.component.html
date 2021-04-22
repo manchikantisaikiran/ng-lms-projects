@@ -1,0 +1,36 @@
+<div class="edit-note-wrapper container has-blurred-white-bg">
+    <h2 class="is-bold">Edit Note</h2>
+    <span [ngStyle]="{ color: 'red' }" *ngIf="!note">Note not found</span>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)" *ngIf="note">
+      <div class="form-field">
+        <input
+          #titleField="ngModel"
+          required
+          [ngModel]="note?.title"
+          name="title"
+          class="textbox"
+          type="text"
+          placeholder="enter note title..."
+          minlength="6"
+        />
+        <span [ngStyle]="{ color: 'red' }" *ngIf="form.invalid && form.touched && titleField.invalid"
+          >Note title
+          <ng-container *ngIf="titleField.errors?.required">is required!</ng-container>
+          <ng-container *ngIf="titleField.errors?.minlength">should be atleast 6 characters!</ng-container>
+          </span
+        >
+      </div>
+      <textarea
+        [ngModel]="note?.content"
+        name="content"
+        placeholder="Enter note content..."
+        class="textarea"
+      ></textarea>
+      <div class="btns-container">
+        <a class="btn" routerLink="../">Cancel</a>
+        <button (click)="deleteNote()" type="button" class="btn">Delete</button>
+        <button class="btn align-end">Save Note</button>
+      </div>
+    </form>
+  </div>
+  

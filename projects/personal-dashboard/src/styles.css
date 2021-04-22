@@ -17,6 +17,10 @@ h1 {
     font-size: 48px;
 }
 
+.form-field{
+    margin-bottom: 15px;
+}
+
 .textbox,.textarea{
     font-size: 18px;
     font-family: inherit;
@@ -25,7 +29,6 @@ h1 {
     background-color: rgba(255,255,255,0.85);
     border: 2px solid rgba(0,0,0,0.3);
     border-radius: 4px;
-    margin-bottom: 20px;
 }
 
 .textbox:hover{
@@ -46,7 +49,7 @@ h1 {
 
 h2 {
     font-size: 40px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 h1.is-bold,
@@ -89,6 +92,7 @@ a {
 
 .btns-container{
     display: flex;
+    gap: 12px;
 }
 .btns-container .align-end{
     margin-left: auto;
