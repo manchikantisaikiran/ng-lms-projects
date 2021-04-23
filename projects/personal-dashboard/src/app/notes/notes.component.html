@@ -1,7 +1,7 @@
 <div class="notes-wrapper">
   <div class="container">
     <div class="notes-list">
-      <ng-container *ngFor="let note of notes">
+      <ng-container *ngFor="let note of notes;trackBy:trackById">
         <a [routerLink]="note.id">
           <app-note-card [note]="note"></app-note-card>
         </a>

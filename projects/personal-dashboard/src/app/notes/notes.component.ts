@@ -17,4 +17,8 @@ export class NotesComponent implements OnInit {
     this.notes = this.notesService.getNotes();
   }
 
+  trackById(index: number, item: Note) {
+    return item.id;
+  }
+
 }

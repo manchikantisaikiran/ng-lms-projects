@@ -1,0 +1,7 @@
+.add-bookmark-wrapper{
+    padding: 15px;
+    border-radius: 5px;
+    overflow-y: auto;
+    max-height: 100%;
+    
+}

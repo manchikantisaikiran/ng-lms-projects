@@ -8,13 +8,13 @@ import { TodoService } from '../shared/todo-service.service';
   selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css'],
-  animations:[
-    trigger('todoItemAnim',[
-      transition(':leave',[
-        animate(200,style({
-          opacity:0,
-          height:0,
-          marginBottom:0,
+  animations: [
+    trigger('todoItemAnim', [
+      transition(':leave', [
+        animate(200, style({
+          opacity: 0,
+          height: 0,
+          marginBottom: 0,
         }))
       ])
     ])
@@ -24,7 +24,7 @@ export class TodosComponent implements OnInit {
 
   todos: TodoModel[] = [];
 
-  constructor(private todoService: TodoService,private router:Router) { }
+  constructor(private todoService: TodoService, private router: Router) { }
 
   ngOnInit(): void {
     this.todos = this.todoService.getTodos()
@@ -34,11 +34,15 @@ export class TodosComponent implements OnInit {
     this.todoService.updateTodo(todo.id, { isCompleted: !todo.isCompleted });
   }
 
-  onEditClick(todo:TodoModel){
-    this.router.navigate(['/todos',todo.id])
+  onEditClick(todo: TodoModel) {
+    this.router.navigate(['/todos', todo.id])
   }
 
-  ondeleteClick(todo:TodoModel){
+  ondeleteClick(todo: TodoModel) {
     this.todoService.deleteTodo(todo.id);
+  }
+
+  trackById(index: number, item: TodoModel) {
+    return item.id;
   }
 }

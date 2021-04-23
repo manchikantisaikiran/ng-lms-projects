@@ -1,4 +1,9 @@
-<div class="bookmark-tile">
-  <img src="http://google.com/favicon.ico" alt="wikipedia" />
-    <p class="tile-text">Google</p>
-</div>
+<a [href]="bookmark?.url" target="_blank" class="bookmark-tile">
+  <div class="tile-icon" *ngIf="!faviconError">
+    <img [src]="bookmark.url.origin + '/favicon.ico'" alt="{{bookmark.name}}" (error)="faviconError=true" />
+  </div>
+  <div class="tile-icon fallback" *ngIf="faviconError">
+    {{bookmark.name[0] | uppercase}}
+  </div>
+    <p class="tile-text">{{bookmark.name}}</p>
+</a>

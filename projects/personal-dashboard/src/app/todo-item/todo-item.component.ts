@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationService } from '../shared/notification.service';
 import { TodoModel } from '../shared/todo-model';
 
 @Component({
@@ -13,7 +14,8 @@ export class TodoItemComponent implements OnInit {
   @Output() editClick: EventEmitter<void> = new EventEmitter()
   @Output() deleteClick: EventEmitter<void> = new EventEmitter()
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private notificationService:NotificationService) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +26,7 @@ export class TodoItemComponent implements OnInit {
 
   onDelete(){
     this.deleteClick.emit();
+    this.notificationService.show('Todo Deleted!')
   }
 
 }
