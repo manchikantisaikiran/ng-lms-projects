@@ -29,6 +29,7 @@ export class EditNoteComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
+    if(form.invalid) return;
     console.log(form.value)
     if (!this.note) return;
     this.noteService.updateNotes(this.note.id, form.value)

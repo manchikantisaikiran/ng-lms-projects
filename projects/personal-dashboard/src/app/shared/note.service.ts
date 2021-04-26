@@ -66,8 +66,4 @@ export class NoteService {
       console.log(e)
     }
   }
-
-  ngOnDestroy(){
-    this.storageSubscription.unsubscribe();
-  }
 }

@@ -62,9 +62,4 @@ export class TodoService {
       console.log(e)
     }
   }
-
-  ngOnDestroy() {
-    this.storageSubscription.unsubscribe();
-  }
-
 }

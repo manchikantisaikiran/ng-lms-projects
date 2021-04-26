@@ -68,8 +68,4 @@ export class BookmarkService {
     }
   }
 
-  ngOnDestroy() {
-    this.storageSubscription.unsubscribe();
-  }
-
 }
