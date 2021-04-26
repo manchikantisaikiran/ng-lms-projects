@@ -466,7 +466,123 @@
           }
         }
       }
+    },
+    "task-manager-ui": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/task-manager-ui",
+      "sourceRoot": "projects/task-manager-ui/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/task-manager-ui",
+            "index": "projects/task-manager-ui/src/index.html",
+            "main": "projects/task-manager-ui/src/main.ts",
+            "polyfills": "projects/task-manager-ui/src/polyfills.ts",
+            "tsConfig": "projects/task-manager-ui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/task-manager-ui/src/favicon.ico",
+              "projects/task-manager-ui/src/assets"
+            ],
+            "styles": [
+              "projects/task-manager-ui/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/task-manager-ui/src/environments/environment.ts",
+                  "with": "projects/task-manager-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "task-manager-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "task-manager-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "task-manager-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/task-manager-ui/src/test.ts",
+            "polyfills": "projects/task-manager-ui/src/polyfills.ts",
+            "tsConfig": "projects/task-manager-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/task-manager-ui/karma.conf.js",
+            "assets": [
+              "projects/task-manager-ui/src/favicon.ico",
+              "projects/task-manager-ui/src/assets"
+            ],
+            "styles": [
+              "projects/task-manager-ui/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/task-manager-ui/tsconfig.app.json",
+              "projects/task-manager-ui/tsconfig.spec.json",
+              "projects/task-manager-ui/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/task-manager-ui/e2e/protractor.conf.js",
+            "devServerTarget": "task-manager-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "task-manager-ui:serve:production"
+            }
+          }
+        }
+      }
     }
   },
-  "defaultProject": "search-app-rxjs"
+  "defaultProject": "task-manager-ui"
 }
