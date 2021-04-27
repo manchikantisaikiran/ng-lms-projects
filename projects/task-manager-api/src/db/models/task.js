@@ -4,12 +4,16 @@ const taskSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        minlength: 6,
         trim: true
     },
-    listId:{
-        type:mongoose.Types.ObjectId,
-        required:true
+    listId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'List'
+    },
+    completed: {
+        type: Boolean,
+        default: false
     }
 })
 

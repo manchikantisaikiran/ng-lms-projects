@@ -1,22 +1,40 @@
 <div class="centered-content">
-    <div class="container">
-        <div class="sidebar">
-            <h1>Lists</h1>
-            <div class="list-menu" >
-                <a class="list-menu-item is-active">list-1</a>
-                <a class="list-menu-item ">list-1</a>
-                <a class="list-menu-item ">list-1</a>
-            </div>
-            <button class="btn btn-primary">+ New List</button>
-        </div>
-        <div class="task-lists-container">
-            <h1>Tasks</h1>
-            <div class="task">
-                <p>this is something</p>
-            </div>
-            <div class="task">
-                <p>this is something</p>
-            </div>
-        </div>
+  <div class="container">
+    <div class="sidebar">
+      <h1 class="title">Lists</h1>
+      <div class="list-menu">
+        <a
+          routerLinkActive="is-active"
+          [routerLink]="['/lists', list._id]"
+          *ngFor="let list of lists"
+          class="list-menu-item"
+          >{{ list.title }}</a
+        >
+      </div>
+      <button class="btn btn-primary" routerLink="/new-list">+ New List</button>
     </div>
+    <div class="task-lists-container">
+      <ng-container *ngIf="tasks">
+        <h1 class="title">Tasks</h1>
+        <div
+          [ngClass]="{ complete: task.completed }"
+          (click)="onTaskClick(task)"
+          class="task"
+          *ngFor="let task of tasks"
+        >
+          <p>{{ task.title }}</p>
+        </div>
+
+        <ng-container *ngIf="tasks.length === 0">
+          No Tasks to show! Create one using a add button below!
+        </ng-container>
+        <button routerLink="./new-task" type="button" class="btn btn-info">
+          <i class="bi bi-plus"></i>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!tasks">
+        please select a list fom sideBar
+      </ng-container>
+    </div>
+  </div>
 </div>

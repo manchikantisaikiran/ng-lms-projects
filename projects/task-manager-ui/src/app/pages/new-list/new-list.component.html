@@ -1,0 +1,14 @@
+<div class="centered-content">
+  <div class="modal-box">
+    <h1>Create New List</h1>
+    <div class="input-group mb-3">
+      <input #title type="text" class="form-control" placeholder="List's Title" />
+    </div>
+    <div class="input-group-append">
+      <button class="btn btn-info" routerLink="/">Cancel</button>
+      <button class="btn btn-primary" type="button" (click)="createList(title.value)">
+        Create
+      </button>
+    </div>
+  </div>
+</div>

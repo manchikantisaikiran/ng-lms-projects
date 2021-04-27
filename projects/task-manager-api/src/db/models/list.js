@@ -4,8 +4,12 @@ const listSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        minlength: 6,
         trim: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
     }
 })
 
