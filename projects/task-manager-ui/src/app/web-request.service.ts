@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { List, Task } from './model';
 
@@ -14,7 +14,12 @@ export class WebRequestService {
   }
 
   get(url: string) {
-    return this.http.get<List[] | Task[]>(`${this.ROOT_URL}/${url}`);
+    return this.http.get<List[] | Task[]>(`${this.ROOT_URL}/${url}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4NTE1NGQ2MGJiYzA2NmMwNzUzNWUiLCJpYXQiOjE2MTk1ODQ1ODd9.mzKL3a3MVurNK11oNbrcl_CEInRJfs5sUVSA_eUkozc'
+      })
+    })
   }
 
   post(url: string, payload: Object) {

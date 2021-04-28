@@ -1,7 +1,7 @@
 <div class="centered-content">
   <div class="login-box">
     <form>
-        <h1 class="title">Login</h1>
+      <h1 class="title">{{ toLogin ? "Login" : "SignUp" }}</h1>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input
@@ -21,7 +21,19 @@
           #password
         />
       </div>
-      <button type="button" (click)="onLoginbutton(email.value,password.value)" class="btn btn-primary">Login</button>
+      <button
+        type="button"
+        (click)="onLoginbutton(email.value, password.value)"
+        class="btn btn-primary"
+      >
+        {{ toLogin ? "Login" : "SignUp" }}
+      </button>
+      <div class="link-wrapper" *ngIf="toLogin">
+        Don't have an acount?<a class="link" (click)="toggle()">&nbsp;Signup</a>
+      </div>
+      <div class="link-wrapper" *ngIf="!toLogin">
+        Already have an acount?<a class="link" (click)="toggle()">&nbsp;Login</a>
+      </div>
     </form>
   </div>
 </div>

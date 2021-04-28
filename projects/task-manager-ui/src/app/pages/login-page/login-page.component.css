@@ -1,6 +1,17 @@
-.login-box{
-    padding: 32px;
-    background-color: white;
-    border-radius: 5px;
-    width: 60vw;
+.login-box {
+  padding: 32px;
+  background-color: white;
+  border-radius: 5px;
+  width: 60vw;
+}
+
+.link-wrapper{
+    margin-top: 3px;
+    font-size: 0.85em;
+}
+
+a.link {
+  text-decoration: inherit;
+  color: #007bff;;
+  cursor: pointer;
 }

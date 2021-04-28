@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { LoginService } from '../../login.service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,17 +9,29 @@ import { AuthService } from '../../auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
+  toLogin = true;
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
+  toggle() {
+    this.toLogin = !this.toLogin;
+  }
+
   onLoginbutton(email: string, password: string) {
-    this.authService.login(email,password)
-    .subscribe(res=>{
-      console.log(res);
-      
-    })
+    if (this.toLogin) {
+      this.loginService.signupOrLogin(email, password,'users/login')
+        .subscribe(res => {
+          console.log(res);
+        })
+    } else {
+      this.loginService.signupOrLogin(email, password,'users')
+        .subscribe(res => {
+          console.log(res);
+        })
+    }
   }
 
 }

@@ -31,6 +31,8 @@ export class TaskViewComponent implements OnInit {
     this.taskService.getLists()
       .subscribe(lists => {
         this.lists = lists;
+        console.log(lists);
+        
       })
   }
 
