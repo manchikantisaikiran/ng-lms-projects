@@ -47,7 +47,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
         res.status(500).send()
     }
 })
-
+//to verify user is autenticated
 router.get('/users/me', auth, async (req, res) => {
     res.send(req.user)
 })
@@ -73,7 +73,6 @@ router.patch('/user/me', auth, async (req, res) => {
 router.delete('/user/me', auth, async (req, res) => {
     try {
         await req.user.remove()
-        sendOffEmail(req.user.email, req.user.name)
         res.send(req.user)
     } catch (e) {
         res.status(500).send()

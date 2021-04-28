@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task } from './model';
+import { List, Task } from './model';
 import { WebRequestService } from './web-request.service';
 
 @Injectable({
@@ -23,6 +23,22 @@ export class TaskService {
 
   getTasks(listId: string) {
     return this.webReqService.get(`lists/${listId}/tasks`)
+  }
+
+  updateList(id: string, payload: Partial<List>) {
+    return this.webReqService.patch(`lists/${id}`, payload)
+  }
+
+  updateTask(taskId: string, listId: string, payload: Partial<List>) {
+    return this.webReqService.patch(`lists/${listId}/tasks/${taskId}`, payload);
+  }
+
+  deleteList(id: string) {
+    return this.webReqService.delete(`lists/${id}`)
+  }
+
+  deleteTask(taskId: string, listId: string) {
+    return this.webReqService.delete(`lists/${listId}/tasks/${taskId}`);
   }
 
   isCompleted(task: Task) {

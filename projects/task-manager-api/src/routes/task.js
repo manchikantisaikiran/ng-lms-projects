@@ -62,11 +62,11 @@ router.patch('/lists/:listId/tasks/:taskId', auth, async (req, res) => {
     }
 })
 
-router.delete('/task/:id', auth, async (req, res) => {
+router.delete('/lists/:listId/tasks/:taskId', auth, async (req, res) => {
     const _id = req.params.id
     try {
         // const task = await Task.findByIdAndDelete(req.params.id)
-        const task = await Task.findOneAndDelete({ _id, author: req.user._id })
+        const task = await Task.findOneAndDelete({ _id: req.params.taskId, listId: req.params.listId })
         if (!task)
             return res.status(404).send()
         res.send(task)

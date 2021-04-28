@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from './model'
+import { User, UserDetails } from './model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  BASE_URL = 'localhost:3000';
+  BASE_URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
@@ -16,11 +16,30 @@ export class LoginService {
       email,
       password
     }, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        // s'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4NTE1NGQ2MGJiYzA2NmMwNzUzNWUiLCJpYXQiOjE2MTk1ODQ1ODd9.mzKL3a3MVurNK11oNbrcl_CEInRJfs5sUVSA_eUkozc'
-      })
-    }
-    )
+      observe: 'response',
+    })
   }
+
+  isUserAutenticated() {
+    let token = localStorage.getItem('token');
+    if (!token) token = ''
+    return this.http.get<UserDetails>(`${this.BASE_URL}/users/me`, {
+      observe: 'response',
+      headers: new HttpHeaders({
+        'Authorization': token
+      })
+    })
+  }
+
+  logoutUser() {
+    let token = localStorage.getItem('token');
+    if (!token) token = ''
+    return this.http.post(`${this.BASE_URL}/users/logout`, {}, {
+      observe: 'response',
+      headers: new HttpHeaders({
+        'Authorization': token
+      })
+    })
+  }
+
 }

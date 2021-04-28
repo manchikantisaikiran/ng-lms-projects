@@ -21,6 +21,12 @@
           #password
         />
       </div>
+      <div
+        class="text-center"
+        [ngClass]="loginStatus ? 'text-success' : 'text-danger'"
+      >
+        {{ loginStatusMsg }}
+      </div>
       <button
         type="button"
         (click)="onLoginbutton(email.value, password.value)"
@@ -32,7 +38,9 @@
         Don't have an acount?<a class="link" (click)="toggle()">&nbsp;Signup</a>
       </div>
       <div class="link-wrapper" *ngIf="!toLogin">
-        Already have an acount?<a class="link" (click)="toggle()">&nbsp;Login</a>
+        Already have an acount?<a class="link" (click)="toggle()"
+          >&nbsp;Login</a
+        >
       </div>
     </form>
   </div>

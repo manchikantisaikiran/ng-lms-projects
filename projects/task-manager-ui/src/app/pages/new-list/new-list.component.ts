@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../../task.service';
@@ -10,7 +11,8 @@ import { TaskService } from '../../task.service';
 export class NewListComponent implements OnInit {
 
   constructor(private taskService: TaskService,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +23,10 @@ export class NewListComponent implements OnInit {
         console.log(response);
         this.router.navigate(['/lists', response._id]);
       })
+  }
+
+  cancelClicked() {
+    this.location.back();
   }
 
 }

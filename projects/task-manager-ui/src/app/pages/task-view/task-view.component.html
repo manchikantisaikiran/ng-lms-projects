@@ -1,3 +1,9 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a [ngStyle]="{ color: 'blue' }" class="navbar-brand">{{ username }}</a>
+    <button class="btn btn-outline-danger" (click)="onLogout()">Logout</button>
+  </div>
+</nav>
 <div class="centered-content">
   <div class="container">
     <div class="sidebar">
@@ -15,15 +21,44 @@
     </div>
     <div class="task-lists-container">
       <ng-container *ngIf="tasks">
-        <h1 class="title">Tasks</h1>
-        <div
-          [ngClass]="{ complete: task.completed }"
-          (click)="onTaskClick(task)"
-          class="task"
-          *ngFor="let task of tasks"
-        >
-          <p>{{ task.title }}</p>
+        <div class="top-bar">
+          <h1 class="title">Tasks</h1>
+          <div class="dropdown">
+            <button class="btn btn-secondary btn-sm settings" type="button">
+              <i class="bi bi-gear-fill"></i>
+              <div class="dropdown-menu">
+                <a class="dropdown-item text-info" (click)="onEdit()">Edit</a>
+                <a class="dropdown-item text-danger" (click)="onDeleteList()"
+                  >Delete</a
+                >
+              </div>
+            </button>
+          </div>
         </div>
+        <ng-container class="task-items-container">
+          <div class="task-text">
+            <div
+              [ngClass]="{ complete: task.completed }"
+              (click)="onTaskClick(task)"
+              class="task"
+              *ngFor="let task of tasks"
+            >
+              <p>{{ task.title }}</p>
+              <div class="task-action-buttons">
+                <i
+                  (click)="onEditTask(task._id); $event.stopPropagation()"
+                  class="btn btn-warning bi bi-pencil-square"
+                ></i>
+                <button
+                  (click)="onDeleteTask(task._id); $event.stopPropagation()"
+                  class="btn btn-danger"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
 
         <ng-container *ngIf="tasks.length === 0">
           No Tasks to show! Create one using a add button below!

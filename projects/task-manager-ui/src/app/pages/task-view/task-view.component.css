@@ -32,13 +32,13 @@
 h1 {
   font-size: 28px;
   letter-spacing: 1px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .task-lists-container {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 70px;
+  grid-template-rows: 40px 1fr;
   /* flex-direction: column; */
   flex-grow: 3;
   width: 100%;
@@ -58,6 +58,8 @@ h1 {
   margin-top: 10px;
   transition: 0.2s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .task:active {
@@ -133,4 +135,42 @@ h1 {
   top: -5px;
   left: -10px;
   /* transform: translate(-50%, -50%); */
+}
+
+.top-bar {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.top-bar h1 {
+  flex-grow: 1;
+}
+
+.dropdown-menu {
+  right: 0;
+  left: auto;
+  margin-top: 0;
+}
+
+.settings:hover .dropdown-menu {
+  display: block;
+  right: 0;
+}
+
+.task-text p {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+.task-text .btn {
+  margin-right: 5px;
+  z-index: 1000;
+  cursor: pointer;
+  /* position: absolute; */
+}
+
+.navbar{
+  position: fixed;
+  top: 0;
+  width: 100%;
 }

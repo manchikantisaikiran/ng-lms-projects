@@ -1,6 +1,8 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 import { LoginService } from '../../login.service';
+import { User } from '../../model';
 
 @Component({
   selector: 'app-login-page',
@@ -10,10 +12,18 @@ import { LoginService } from '../../login.service';
 export class LoginPageComponent implements OnInit {
 
   toLogin = true;
+  buttonClicked = false;
+  loginStatusMsg = '';
+  loginStatus = false;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loginService.isUserAutenticated()
+      .subscribe(res => {
+        console.log(res)
+        this.router.navigate(['/lists']);
+      }, err => console.log(err))
   }
 
   toggle() {
@@ -21,17 +31,40 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLoginbutton(email: string, password: string) {
+    this.buttonClicked = true;
     if (this.toLogin) {
-      this.loginService.signupOrLogin(email, password,'users/login')
+      this.loginService.signupOrLogin(email, password, 'users/login')
         .subscribe(res => {
           console.log(res);
+          this.responsehandler(res);
+        }, (err: HttpErrorResponse) => {
+          this.errorHandler(err);
         })
     } else {
-      this.loginService.signupOrLogin(email, password,'users')
+      this.loginService.signupOrLogin(email, password, 'users')
         .subscribe(res => {
           console.log(res);
+          this.responsehandler(res);
+        }, (err: HttpErrorResponse) => {
+          this.errorHandler(err);
         })
     }
+  }
+
+  responsehandler(res: HttpResponse<User>) {
+    if (res.status === 200 && res.body || res.status === 201 && res.body) {
+      localStorage.setItem('userDetails', JSON.stringify(res.body.user));
+      localStorage.setItem('token', res.body.token);
+      this.loginStatusMsg = 'loginSuccess!'
+      this.loginStatus = true;
+      this.router.navigate(['/lists']);
+    }
+  }
+
+  errorHandler(err: HttpErrorResponse) {
+    console.log(err)
+    this.loginStatus = false;
+    this.loginStatusMsg = err.error.error;
   }
 
 }

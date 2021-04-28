@@ -8,12 +8,12 @@ export interface Task extends List {
     completed: boolean;
 }
 
-interface UserDetails {
+export interface UserDetails {
     _id: string;
     email: string;
 }
 
 export interface User {
     user: UserDetails;
-    token:string;
+    token: string;
 }

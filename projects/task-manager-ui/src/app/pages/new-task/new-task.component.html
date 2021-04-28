@@ -5,7 +5,7 @@
         <input #title type="text" class="form-control" placeholder="Task's Title" />
       </div>
       <div class="input-group-append">
-        <button class="btn btn-info" routerLink="/">Cancel</button>
+        <button class="btn btn-info" (click)="cancelClicked()">Cancel</button>
         <button class="btn btn-primary" type="button" (click)="createTask(title.value)">
           Create
         </button>

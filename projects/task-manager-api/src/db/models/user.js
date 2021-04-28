@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const validator = require('validator');
 const bcrypt = require('bcryptjs')
+const List = require('./list')
 
 const jwtSecret = require('../../constants')
 
@@ -78,7 +79,7 @@ userSchema.pre('save', async function (next) {
 })
 
 userSchema.pre('remove', async function (next) {
-    await Task.deleteMany({ author: this._id })
+    await List.deleteMany({ userId: this._id })
     next()
 })
 

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../task.service';
@@ -13,7 +14,8 @@ export class NewTaskComponent implements OnInit {
 
   constructor(private taskService: TaskService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -27,6 +29,10 @@ export class NewTaskComponent implements OnInit {
         console.log(response)
         this.router.navigate(['../'], { relativeTo: this.route })
       })
+  }
+
+  cancelClicked() {
+    this.location.back();
   }
 
 }
