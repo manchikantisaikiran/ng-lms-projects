@@ -11,6 +11,15 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  getHeaders(): HttpHeaders {
+    let token = localStorage.getItem('token');
+    if (!token) return new HttpHeaders({});
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    })
+  }
+
   signupOrLogin(email: string, password: string, url: string) {
     return this.http.post<User>(`${this.BASE_URL}/${url}`, {
       email,
@@ -21,24 +30,16 @@ export class LoginService {
   }
 
   isUserAutenticated() {
-    let token = localStorage.getItem('token');
-    if (!token) token = ''
     return this.http.get<UserDetails>(`${this.BASE_URL}/users/me`, {
       observe: 'response',
-      headers: new HttpHeaders({
-        'Authorization': token
-      })
+      headers: this.getHeaders()
     })
   }
 
   logoutUser() {
-    let token = localStorage.getItem('token');
-    if (!token) token = ''
     return this.http.post(`${this.BASE_URL}/users/logout`, {}, {
       observe: 'response',
-      headers: new HttpHeaders({
-        'Authorization': token
-      })
+      headers: this.getHeaders()
     })
   }
 

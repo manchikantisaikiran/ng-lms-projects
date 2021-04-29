@@ -5,7 +5,6 @@ const router = express.Router();
 
 //create task
 router.post('/lists/:listId/tasks', auth, async (req, res) => {
-    console.log('a')
     const task = new Task({
         ...req.body,
         listId: req.params.listId

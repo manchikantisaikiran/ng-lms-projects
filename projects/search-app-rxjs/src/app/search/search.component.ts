@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, PartialObserver, throwError } from 'rxjs'
+import { Subject, throwError } from 'rxjs'
 import { map, distinctUntilChanged, debounceTime, switchMap, catchError } from 'rxjs/operators'
 import { SearchService } from '../search.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-
-
-interface Response {
-  total_count: number;
-  incomplete_results: boolean;
-  items: [];
-}
 
 @Component({
   selector: 'app-search',
@@ -19,25 +12,26 @@ interface Response {
 export class SearchComponent implements OnInit {
 
 
-  public loading!: boolean;
-  public searchTerm = new Subject();
-  public baseUrl = "https://api.github.com/search/repositories";
-  public searchResults: any;
-  public paginationElements: any;
-  public errorMessage: any;
-  public page: any;
+  loading!: boolean;
+  searchTerm = new Subject();
+  baseUrl = "https://api.github.com/search/repositories";
+  searchResults: any;
+  paginationElements: Array<any> = [];
+  errorMessage: any;
+  error: boolean = false;
+  page: any;
 
   constructor(private searchService: SearchService) { }
 
-  public searchForm = new FormGroup({
+  searchForm = new FormGroup({
     search: new FormControl('', Validators.required),
   });
 
-  public search() {
+  search() {
     this.searchTerm
       .pipe(
         map((e: any) => {
-          console.log(e.target.value);
+          // console.log(e.target.value);
           return e.target.value
         }),
         debounceTime(400),
@@ -49,6 +43,7 @@ export class SearchComponent implements OnInit {
         catchError((e) => {
           console.log(e)
           this.loading = false;
+          this.error = true;
           this.errorMessage = e.error.message;
           return throwError(e);
         }),
@@ -56,6 +51,7 @@ export class SearchComponent implements OnInit {
         this.loading = false;
         this.searchResults = v.items;
         this.paginationElements = this.searchResults;
+        if (!this.paginationElements.length) this.errorMessage = 'No Results Found!'
       })
   }
 

@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../task.service';
@@ -16,7 +17,7 @@ export class EditListComponent implements OnInit {
   constructor(private location: Location,
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -31,11 +32,14 @@ export class EditListComponent implements OnInit {
 
   editList(title: string) {
     this.taskService.updateList(this.activeListId, { title })
-    .subscribe(res=>{
-      console.log(res);
-      // this.router.navigate([])
-      this.location.back()
-    })
+      .subscribe(res => {
+        // this.router.navigate([])
+        this.location.back()
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        }
+      })
   }
 
 }

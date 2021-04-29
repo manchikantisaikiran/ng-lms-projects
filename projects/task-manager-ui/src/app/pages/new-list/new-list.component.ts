@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../../task.service';
@@ -20,8 +21,11 @@ export class NewListComponent implements OnInit {
   createList(title: string) {
     this.taskService.createList(title)
       .subscribe((response) => {
-        console.log(response);
         this.router.navigate(['/lists', response._id]);
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        }
       })
   }
 

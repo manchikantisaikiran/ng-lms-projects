@@ -13,53 +13,36 @@ export class WebRequestService {
     this.ROOT_URL = 'http://localhost:3000';
   }
 
-  get(url: string) {
+  getHeaders(): HttpHeaders {
     let token = localStorage.getItem('token');
-    if (!token) token = ''
+    if (!token) return new HttpHeaders({});
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    })
+  }
+
+  get(url: string) {
     return this.http.get<List[] | Task[]>(`${this.ROOT_URL}/${url}`, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': token,
-      })
+      headers: this.getHeaders()
     })
   }
 
   post(url: string, payload: Object) {
-    let token = localStorage.getItem('token');
-    if (!token) token = ''
     return this.http.post<List | Task>(`${this.ROOT_URL}/${url}`, payload, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': token,
-      })
+      headers: this.getHeaders()
     });
   }
 
   patch(url: string, payload: Object) {
-    let token = localStorage.getItem('token');
-    if (!token) token = ''
     return this.http.patch<List | Task>(`${this.ROOT_URL}/${url}`, payload, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': token
-      })
+      headers: this.getHeaders()
     });
   }
 
   delete(url: string) {
-    let token = localStorage.getItem('token');
-    if (!token) token = ''
     return this.http.delete(`${this.ROOT_URL}/${url}`, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': token,
-      })
+      headers: this.getHeaders()
     });
-  }
-
-  login(email: string, password: string) {
-    return this.http.post(`${this.ROOT_URL}/users/login`, {
-      email, password
-    }, { observe: 'response' })
   }
 }

@@ -10,7 +10,7 @@ import { User } from '../../model';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-
+  value = ""
   toLogin = true;
   buttonClicked = false;
   loginStatusMsg = '';
@@ -21,13 +21,15 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.isUserAutenticated()
       .subscribe(res => {
-        console.log(res)
         this.router.navigate(['/lists']);
       }, err => console.log(err))
   }
 
   toggle() {
+    this.value = '';
+    console.log(this.value)
     this.toLogin = !this.toLogin;
+    console.log(this.value)
   }
 
   onLoginbutton(email: string, password: string) {
@@ -35,7 +37,6 @@ export class LoginPageComponent implements OnInit {
     if (this.toLogin) {
       this.loginService.signupOrLogin(email, password, 'users/login')
         .subscribe(res => {
-          console.log(res);
           this.responsehandler(res);
         }, (err: HttpErrorResponse) => {
           this.errorHandler(err);
@@ -43,7 +44,6 @@ export class LoginPageComponent implements OnInit {
     } else {
       this.loginService.signupOrLogin(email, password, 'users')
         .subscribe(res => {
-          console.log(res);
           this.responsehandler(res);
         }, (err: HttpErrorResponse) => {
           this.errorHandler(err);
@@ -62,7 +62,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   errorHandler(err: HttpErrorResponse) {
-    console.log(err)
     this.loginStatus = false;
     this.loginStatusMsg = err.error.error;
   }

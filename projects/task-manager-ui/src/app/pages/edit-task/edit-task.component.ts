@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../task.service';
@@ -34,9 +35,12 @@ export class EditTaskComponent implements OnInit {
   editTask(title: string) {
     this.taskService.updateTask(this.activeTaskId, this.activeListId, { title })
       .subscribe(res => {
-        console.log(res);
         //   // this.router.navigate([])
         this.location.back()
+      }, (err: HttpErrorResponse) => {
+        if (err.status === 401) {
+          this.router.navigate(['/login']);
+        }
       })
   }
 
