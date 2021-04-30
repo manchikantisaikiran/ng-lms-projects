@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../login.service';
 import { User } from '../../model';
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +11,8 @@ import { User } from '../../model';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  value = ""
+  email = new FormControl('');
+  password = new FormControl('');
   toLogin = true;
   buttonClicked = false;
   loginStatusMsg = '';
@@ -26,10 +28,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   toggle() {
-    this.value = '';
-    console.log(this.value)
+    this.email.setValue('');
+    this.password.setValue('');
     this.toLogin = !this.toLogin;
-    console.log(this.value)
   }
 
   onLoginbutton(email: string, password: string) {
