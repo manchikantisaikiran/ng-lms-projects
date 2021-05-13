@@ -1,121 +1,191 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons+Outlined|Material+Icons');
-
-*{
-    box-sizing: border-box;
-    margin:0;
-    padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons+Outlined|Material+Icons");
+@import url('../../../node_modules/hopscotch/dist/css/hopscotch.min.css');
+@import url('../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-    font-family: 'Inter','sans-serif';
-    color: #222;
-    overflow: hidden;
+html {
+  font-family: "Inter", "sans-serif";
+  color: #222;
+  overflow: hidden;
 }
 
 h1 {
-    font-size: 48px;
+  font-size: 48px;
 }
 
-.form-field{
-    margin-bottom: 15px;
+.form-field {
+  margin-bottom: 15px;
 }
 
-.form-field .form-label{
-    margin-bottom: 5px;
-    display: block;
-    font-weight: 600;
-    color: rgba(0,0,0,0.8);
+.form-field .form-label {
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
 }
 
-.textbox,.textarea{
-    font-size: 18px;
-    font-family: inherit;
-    width: 100%;
-    padding: 7px 10px;
-    background-color: rgba(255,255,255,0.85);
-    border: 2px solid rgba(0,0,0,0.3);
-    border-radius: 4px;
+.textbox,
+.textarea {
+  font-size: 18px;
+  font-family: inherit;
+  width: 100%;
+  padding: 7px 10px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
-.textbox:hover{
-    background-color: rgba(255,255,255,0.95);
-    border-color: rgba(0,0,0,0.42);
+.textbox:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.42);
 }
 
-.textbox:focus{
-    background: white;
-    outline: none;
-    border-color: rgba(0,0,0,0.42);
+.textbox:focus {
+  background: white;
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.42);
 }
 
-.textarea{
-    resize: vertical;
-    min-height: 100px;
+.textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
 h2 {
-    font-size: 40px;
-    margin-bottom: 15px;
+  font-size: 40px;
+  margin-bottom: 15px;
 }
 
 h1.is-bold,
 h2.is-bold {
-    font-weight: bold;
-    letter-spacing: -2px;
+  font-weight: bold;
+  letter-spacing: -2px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .container {
-    max-width: 850px;
-    margin: auto;
+  max-width: 850px;
+  margin: auto;
 }
 
-.btn{
-    padding: 12px 22px;
-    background-color: rgba(0,0,0,0.7);
-    color: white;
-    display: inline-flex;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 4px;
-    align-items: center;
+.btn {
+  padding: 12px 22px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: inline-flex;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  align-items: center;
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(2px);
+}
+
+.btn:active {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.btns-container {
+  display: flex;
+  gap: 12px;
+}
+.btns-container .align-end {
+  margin-left: auto;
+}
+
+.btns-container.btns-centered {
+  justify-content: center;
+}
+
+.has-blurred-white-bg {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+}
+
+h1.is-bold,
+h2.is-bold {
+  font-weight: bold;
+  letter-spacing: -2px;
+}
+/* 
+div.hopscotch-bubble {
+  background-color: #fff;
+  border: 5px solid #000;
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  color: #333;
+  font-family: Helvetica, Arial;
+  font-size: 13px;
+  position: absolute;
+  z-index: 999999;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+}
+
+div.hopscotch-bubble .hopscotch-nav-button.next {
+    border-color: #1b5480;
+    color: #fff;
+    margin: 0 0 0 10px;
+    text-shadow: 0 1px 1px rgb(0 0 0 / 35%);
+    background-color: #287bbc;
+    background-image: -webkit-linear-gradient(to bottom,#287bbc 0,#23639a 100%);
+    background-image: -moz-linear-gradient(to bottom,#287bbc 0,#23639a 100%);
+    background-image: -o-linear-gradient(to bottom,#287bbc 0,#23639a 100%);
+    background-image: linear-gradient(to bottom,#287bbc 0,#23639a 100%);
+}
+
+div.hopscotch-bubble .hopscotch-nav-button {
+    font-weight: 700;
+    border-width: 1px;
+    border-style: solid;
     cursor: pointer;
-    font-family: inherit;
-    border: none;
+    margin: 0;
+    overflow: visible;
+    text-decoration: none!important;
+    width: auto;
+    padding: 0 10px;
+    height: 26px;
+    line-height: 24px;
+    font-size: 12px;
+    *zoom: 1;
+    white-space: nowrap;
+    display: -moz-inline-stack;
+    display: inline-block;
+    *vertical-align: auto;
+    zoom: 1;
+    *display: inline;
+    vertical-align: middle;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.btn:hover{
-    background-color: rgba(0,0,0,0.78);
-    backdrop-filter: blur(2px);
-}
-
-.btn:active{
-    background-color: rgba(0,0,0,0.85);
-}
-
-.btns-container{
-    display: flex;
-    gap: 12px;
-}
-.btns-container .align-end{
-    margin-left: auto;
-}
-
-.btns-container.btns-centered{
-    justify-content: center;
-}
-
-.has-blurred-white-bg{
-    background-color: rgba(255,255,255,0.85);
-    backdrop-filter: blur(20px);
-}
-
-h1.is-bold,h2.is-bold{
-    font-weight: bold;
-    letter-spacing: -2px;
-}
+div.hopscotch-bubble .hopscotch-bubble-container {
+    padding: 15px;
+    position: relative;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+} */

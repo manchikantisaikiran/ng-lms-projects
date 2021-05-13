@@ -1,79 +1,132 @@
-.app-wrapper{
-    display: flex;
-    flex-direction: column;
-    height:100vh;
-}   
-
-
-    /* background-color: #e1e2ed; */
-    /* background-image: url('https://picsum.photos/seed/picsum/1200/625'); */
-    /* background-image: url('https://images.unsplash.com/photo-1616709620730-0058222c8389?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixlib=rb-1.2.1&q=80&w=1920'); */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    /* background-position: center; */
-    /* background-attachment: fixed; */
-
-.bg-img{
-    position: fixed;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.top-section{
-    /* background-color: aquamarine; */
-    text-align: center;
-    padding: 45px 0;
-    padding-bottom: 0;
+/* background-color: #e1e2ed; */
+/* background-image: url('https://picsum.photos/seed/picsum/1200/625'); */
+/* background-image: url('https://images.unsplash.com/photo-1616709620730-0058222c8389?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixlib=rb-1.2.1&q=80&w=1920'); */
+/* background-repeat: no-repeat; */
+/* background-size: cover; */
+/* background-position: center; */
+/* background-attachment: fixed; */
+
+.bg-img {
+  position: fixed;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-.top-section h1{
-    font-size: 75x;
-    font-weight: bold;
-    color: #f5f5f5;
-    text-shadow: 0 1px 7px rgba(0,0,0,0.12);
+.top-section {
+  /* background-color: aquamarine; */
+  text-align: center;
+  padding: 45px 0;
+  padding-bottom: 0;
 }
 
-.top-section h2{
-    font-size: 25px;
-    color: white;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+.top-section h1 {
+  font-size: 75x;
+  font-weight: bold;
+  color: #f5f5f5;
+  text-shadow: 0 1px 7px rgba(0, 0, 0, 0.12);
 }
 
-.content-section{
-    /* background-color: cadetblue; */
-    flex-grow: 1;   
-    overflow-y: auto;
-    /* min-height: 0; */
-    position: relative;
-    overflow: hidden;
+.top-section h2 {
+  font-size: 25px;
+  color: white;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.bottom-section{
-    /* background-color: coral; */
+.content-section {
+  /* background-color: cadetblue; */
+  flex-grow: 1;
+  overflow-y: auto;
+  /* min-height: 0; */
+  position: relative;
+  overflow: hidden;
 }
 
-.bottom-section app-tabs{
-    display: flex;
-    /* margin: auto; */
-    justify-content: center;
+.bottom-section {
+  /* background-color: coral; */
 }
 
-.change-bg-btn{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.1);
-    color: rgba(255,255,255,0.7);
+.bottom-section app-tabs {
+  display: flex;
+  /* margin: auto; */
+  justify-content: center;
 }
 
-.change-bg-btn:hover{
-    background-color: rgba(0,0,0,0.3);
-    color: white;
+.change-bg-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.change-bg-btn:active{
-    transform: translateY(1px);
+.change-bg-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.change-bg-btn:active {
+  transform: translateY(1px);
+}
+
+.tour-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.tour {
+  background-color: #fff;
+  min-width: 350px;
+  max-width: 500px;
+  height: auto;
+  padding: 35px;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 10px;
+}
+
+.tour .btn-info {
+  width: 100%;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  justify-content: center;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.intro {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  grid-column: span 4;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.tour h1{
+    grid-column: span 4;
 }

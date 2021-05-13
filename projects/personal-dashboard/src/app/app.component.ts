@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { animate, group, query, style, transition, trigger } from '@angular/animations'
 import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators'
+import { HopscotchService } from 'ngx-hopscotch'
 const baseStyles = style({
   position: 'absolute',
   top: 0,
@@ -172,6 +173,19 @@ export class AppComponent {
   bgImgs = [
     'https://picsum.photos/seed/picsum/1200/625',
   ]
+  popupTour = true;
+
+  constructor(private _hopscotchService: HopscotchService,
+    private router: Router) { }
+
+  onClose() {
+    this.popupTour = false;
+  }
+
+  public startTour(): void {
+    this._hopscotchService.step(0);
+    console.log('abcd');
+  }
 
   ngOnInit() {
     // timer(0, 1000).subscribe(() => {
@@ -182,7 +196,76 @@ export class AppComponent {
         return new Date();
       })
     )
+
+    this._hopscotchService.configure([
+      {
+        stepIndex: 0,
+        stepDef: {
+          target: 'refresh-img',
+          placement: 'left',
+          content: "This is a refresh button which loads a new random image",
+          title: "Here you can refresh the background-image!",
+          width: 300,
+          // multipage: true
+          nextOnTargetClick:true
+        }
+      },
+      {
+        stepIndex: 1,
+        stepDef: {
+          target: 'bookmarks',
+          placement: 'left',
+          content: "select the tab to show all the bookmarks in your app",
+          title: "Bookmarks tab!",
+          onNext: () => {
+            this.router.navigate(['bookmarks'])
+          },
+          // multipage: true,
+          // xOffset: 80
+          nextOnTargetClick:true
+        }
+      },
+      // {
+      //   stepIndex: 2,
+      //   stepDef: {
+      //     target: 'manage-bookmarks',
+      //     placement: 'bottom',
+      //     title: "Manage Bookmarks",
+      //     content: "Here you can create, edit, delete your bookmarks",
+      //     nextOnTargetClick:true,
+      //     onError:()=>{
+      //       console.log('er')
+      //     }
+      //   }
+      // },
+      {
+        stepIndex: 2,
+        stepDef: {
+          target: 'todos',
+          placement: 'top',
+          content: "select the tab to show all the Todos in your app",
+          title: "Todos tab!",
+          // xOffset: 80
+          nextOnTargetClick:true
+        }
+      },
+      {
+        stepIndex: 3,
+        stepDef: {
+          target: 'notes',
+          placement: 'right',
+          content: "select the tab to show all the notes in your app",
+          title: "Notes tab!",
+          // xOffset: 80
+          nextOnTargetClick:true
+        }
+      },
+    ])
   }
+
+  // public ngAfterViewInit(): void {
+  //   this._hopscotchService.init();
+  // }
 
   prepareRoutes(outlet: RouterOutlet) {
     if (outlet.isActivated) {
